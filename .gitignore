@@ -1,0 +1,8 @@
+*.ko*
+*.o*
+.tmp*
+*.mod.*
+*odule*
+ino/build-uno
+
+

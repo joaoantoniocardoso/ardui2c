@@ -1,0 +1,17 @@
+#!/bin/sh
+# This script loads i2c-dev, iio (industrialio) and loads the device driver
+
+DEVICE_NAME=ardui2c
+DEVICE_ADDR=0x11
+
+sudo modprobe i2c-dev
+sudo i2cdetect -y 1
+sudo modprobe industrialio
+sudo insmod $DEVICE_NAME.ko
+lsmod | grep $DEVICE_NAME
+
+echo $DEVICE_NAME $DEVICE_ADDR | sudo tee /sys/bus/i2c/devices/i2c-1/new_device
+#ls -l /sys/bus/iio/devices/
+
+sudo i2cdetect -y 1
+dmesg | tail

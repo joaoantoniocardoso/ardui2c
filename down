@@ -1,0 +1,15 @@
+#!/bin/sh
+# This script unloads i2c-dev, iio and loads the device driver
+
+DEVICE_NAME=ardui2c
+DEVICE_ADDR=0x11
+
+sudo i2cdetect -y 1
+
+sudo rmmod $DEVICE_NAME
+echo $DEVICE_ADDR | sudo tee /sys/bus/i2c/devices/i2c-1/delete_device
+lsmod | grep $DEVICE_NAME
+sudo rmmod industrialio
+sudo rmmod i2c-dev
+
+dmesg | tail
