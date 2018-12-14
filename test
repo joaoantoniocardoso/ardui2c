@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script test the device driver
+
+watch -n0 "cat \/sys/bus/iio/devices/iio\:device0/in_voltage1_raw"
+
